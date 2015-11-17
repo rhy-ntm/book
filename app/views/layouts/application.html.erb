@@ -3,12 +3,22 @@
 <head>
   <title>Railbook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1><%= image_tag 'rails.png' %>Railbook</h1>
+
+<ul>
+  <li><%= link_to books_path do %>書籍一覧<% end %></li>
+  <li><%= link_to publishes_path do %>出版社一覧<% end %></li>
+  <li><%= link_to reviews_path do %>評判一覧<% end %></li>
+  <li><%= link_to users_path do %>ユーザ一覧<% end %></li>
+</ul>
 
 <%= yield %>
+
+<%= link_to 'リンク', "http://www.yahoo.co.jp/" %>
 
 </body>
 </html>

@@ -17,7 +17,7 @@
 
 <p>
   <strong>Publish:</strong>
-  <%= @book.publish %>
+  <%= @book.publish.publishname %>
 </p>
 
 <p>
@@ -30,5 +30,11 @@
   <%= @book.cd %>
 </p>
 
+<h2>評判</h2>
+<ul>
+<% @book.reviews.each do |review| %>
+  <li><%= review.body %>(<%= review.user.username %>)</li>
+<% end %>
+</ul>
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

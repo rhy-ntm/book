@@ -28,7 +28,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to new_book_path, notice: "#{@book.title}の登録が完了しました。" }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book, notice: '更新が完了しました。' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -56,9 +56,15 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url, notice: '削除が完了しました。' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    #@books = Book.where("title LIKE ?","%" + params['search']['title'] + "%")
+    @books = Book.where(" title LIKE '%#{params['search']['title']}%' ")
+    render :index
   end
 
   private
@@ -69,6 +75,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :title, :price, :publish, :published, :cd)
+      params.require(:book).permit(:isbn, :title, :price, :publish_id, :published, :cd)
     end
 end
