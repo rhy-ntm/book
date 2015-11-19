@@ -15,7 +15,11 @@
   <li><%= link_to reviews_path do %>評判一覧<% end %></li>
   <li><%= link_to users_path do %>ユーザ一覧<% end %></li>
 </ul>
-
+<% if @usr != nil %>
+  <div align="right">
+    ログインユーザー：<%= @usr.username %> | <%= link_to "ログアウト", login_path(:id), method: :delete, data: {confirm: "ログアウトしますか？"} %>
+  </div>
+<% end %>
 <%= yield %>
 
 <%= link_to 'リンク', "http://www.yahoo.co.jp/" %>

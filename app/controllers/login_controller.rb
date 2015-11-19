@@ -1,5 +1,6 @@
 class LoginController < ApplicationController
   skip_before_action :check_logined
+  
   def index
   end
 
@@ -20,5 +21,12 @@ class LoginController < ApplicationController
       @error = 'ユーザーID/パスワードが間違っています。'
       render 'index'
     end
+  end
+  
+  # ログアウトするアクション
+  def destroy
+    session[:usr] = nil
+    reset_session
+    redirect_to login_index_path
   end
 end
