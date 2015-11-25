@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :publishes
 
   resources :books do
-    post 'search', on: :collection
+    get 'search', on: :collection
   end
   root 'login#index'
   # The priority is based upon order of creation: first created -> highest priority.
